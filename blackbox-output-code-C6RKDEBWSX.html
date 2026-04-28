@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhati Beat Records - Professional Video Production</title>
+    <meta name="description" content="Bhati Beat Records - Professional video shooting, editing & music video production. Contact: 7027186286">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='6' cy='5' r='2' fill='%23ff6b6b'/><path d='M6 8 L6 12 M8 11 L10 13' stroke='%23fff' stroke-width='1' stroke-linecap='round'/><text x='2' y='13' font-size='10' font-weight='bold' fill='%23333'>B</text></svg>">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            --accent: #ff6b6b;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-svg {
+            width: 220px;
+            height: 70px;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .logo-svg:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23000" width="1920" height="1080"/><path fill="%23ff6b6b" opacity="0.2" d="M200 200 Q400 100 600 300 T1000 300 Q1200 400 1400 300 T1700 300"/><path fill="%23667eea" opacity="0.15" d="M100 600 Q300 500 500 700 T900 700 Q1100 800 1300 700 T1600 700"/></svg>') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: #fff;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .btn-secondary:hover {
+            background: #fff;
+            color: var(--dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 4rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Services */
+        .services {
+            background: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s;
+            border: 3px solid transparent;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Portfolio */
+        .portfolio {
+            background: var(--dark);
+            color: #fff;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 250px;
+            background: linear-gradient(45deg, var(--accent), #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.4s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--primary-gradient);
+            color: #fff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .phone-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s;
+            margin: 1rem 0;
+        }
+
+        .phone-number:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(255, 107, 107, 0.6);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255,107,107,0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 0 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-svg {
+                width: 180px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <!-- PROFESSIONAL SVG LOGO -->
+            <svg class="logo-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ff6b6b"/>
+                        <stop offset="50%" style="stop-color:#4ecdc4"/>
+                        <stop offset="100%" style="stop-color:#45b7d1"/>
+                    </linearGradient>
+                    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#667eea"/>
+                        <stop offset="100%" style="stop-color:#764ba2"/>
+                    </linearGradient>
+                </defs>
+                <rect width="300" height="100" rx="20" fill="url(#grad2)" opacity="0.1"/>
+                <path d="M40 25 Q45 15 55 15 Q70 15 75 30 Q80 45 70 55 Q65 65 55 65 Q45 65 40 55 Q35 45 40 35 Z M55 75 L55 95 M65 85 L75 95" 
+                      fill="none" stroke="url(#grad1)" stroke-width="4" stroke-linecap="round"/>
+                <text x="95" y="55" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" 
+                      fill="url(#grad1)" stroke="#fff" stroke-width="1">BHATI</text>
+                <text x="95" y="75" font-family="Arial, sans-serif" font-size="16" font-weight="700" 
+                      fill="#333" letter-spacing="1">BEAT RECORDS</text>
+            </svg>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-content container">
+            <h1>🎥 Bhati Beat Records</h1>
+            <p>Professional Video Shoot • Expert Editing • Music Video Production</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">📞 Book Now: 7027186286</a>
+                <a href="#portfolio" class="btn-secondary">Watch Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎥</div>
+                    <h3>Video Shooting</h3>
+                    <p>4K cinematic video production with professional lighting, drones, and multi-camera setups for music videos, events & promotions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3>Video Editing</h3>
+                    <p>Hollywood-level editing with VFX, color grading, motion graphics, and sound design. Fast turnaround guaranteed.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎵</div>
+                    <h3>Music Videos</h3>
+                    <p>Complete production packages from concept to YouTube-ready delivery. Perfect for artists & record labels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Recent Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">Music Video #1<br><small>Wedding Special</small></div>
+                <div class="portfolio-item">Artist Promo<br><small>Hip Hop Single</small></div>
+                <div class="portfolio-item">Event Coverage<br><small>Live Concert</small></div>
+                <div class="portfolio-item">Brand Video<br><small>Product Launch</small></div>
+                <div class="portfolio-item">Short Film<br><small>Emotional Story</small></div>
+                <div
